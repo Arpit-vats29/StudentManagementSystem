@@ -61,4 +61,43 @@ public class StudentManager {
 
         return false;
     }
+
+    // Add Marks
+    public boolean addMarks(int rollNumber, double javaMarks,
+                            double dbmsMarks, double dsaMarks) {
+
+        Student student = searchStudent(rollNumber);
+
+        if (student != null) {
+            student.setJavaMarks(javaMarks);
+            student.setDbmsMarks(dbmsMarks);
+            student.setDsaMarks(dsaMarks);
+            return true;
+        }
+
+        return false;
+    }
+
+    // Display Result
+    public void displayResult(int rollNumber) {
+
+        Student student = searchStudent(rollNumber);
+
+        if (student == null) {
+            System.out.println("Student not found.");
+            return;
+        }
+
+        System.out.println("\n===== Student Result =====");
+        System.out.println("Roll Number: " + student.getRollNumber());
+        System.out.println("Name: " + student.getName());
+        System.out.println("Course: " + student.getCourse());
+        System.out.println("Java Marks: " + student.getJavaMarks());
+        System.out.println("DBMS Marks: " + student.getDbmsMarks());
+        System.out.println("DSA Marks: " + student.getDsaMarks());
+        System.out.println("Total Marks: " + student.getTotalMarks());
+        System.out.println("Percentage: " + student.getPercentage() + "%");
+        System.out.println("Grade: " + student.getGrade());
+        System.out.println("Result: " + student.getResult());
+    }
 }
