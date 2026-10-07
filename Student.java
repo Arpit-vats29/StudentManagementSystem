@@ -18,20 +18,16 @@ public class Student {
         return rollNumber;
     }
 
-    public void setRollNumber(int rollNumber) {
-        this.rollNumber = rollNumber;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCourse() {
         return course;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setCourse(String course) {
@@ -71,6 +67,7 @@ public class Student {
     }
 
     public String getGrade() {
+
         double percentage = getPercentage();
 
         if (percentage >= 90) {
@@ -89,7 +86,11 @@ public class Student {
     }
 
     public String getResult() {
-        if (javaMarks >= 40 && dbmsMarks >= 40 && dsaMarks >= 40) {
+
+        if (javaMarks >= 40 &&
+            dbmsMarks >= 40 &&
+            dsaMarks >= 40) {
+
             return "PASS";
         }
 
