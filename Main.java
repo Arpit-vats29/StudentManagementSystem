@@ -15,7 +15,9 @@ public class Main {
             System.out.println("3. Search Student");
             System.out.println("4. Update Student");
             System.out.println("5. Delete Student");
-            System.out.println("6. Exit");
+            System.out.println("6. Add Marks");
+            System.out.println("7. View Result");
+            System.out.println("8. Exit");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -50,7 +52,7 @@ public class Main {
                     Student foundStudent = manager.searchStudent(searchRoll);
 
                     if (foundStudent != null) {
-                        System.out.println("Student Found:");
+                        System.out.println("\nStudent Found");
                         System.out.println("Roll Number: " + foundStudent.getRollNumber());
                         System.out.println("Name: " + foundStudent.getName());
                         System.out.println("Course: " + foundStudent.getCourse());
@@ -89,7 +91,40 @@ public class Main {
                     break;
 
                 case 6:
-                    System.out.println("Thank you for using Student Management System.");
+                    System.out.print("Enter Roll Number: ");
+                    int marksRoll = scanner.nextInt();
+
+                    System.out.print("Enter Java Marks: ");
+                    double javaMarks = scanner.nextDouble();
+
+                    System.out.print("Enter DBMS Marks: ");
+                    double dbmsMarks = scanner.nextDouble();
+
+                    System.out.print("Enter DSA Marks: ");
+                    double dsaMarks = scanner.nextDouble();
+
+                    if (manager.addMarks(
+                            marksRoll, javaMarks, dbmsMarks, dsaMarks)) {
+
+                        System.out.println("Marks added successfully.");
+
+                    } else {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 7:
+                    System.out.print("Enter Roll Number: ");
+                    int resultRoll = scanner.nextInt();
+
+                    manager.displayResult(resultRoll);
+                    break;
+
+                case 8:
+                    System.out.println(
+                        "Thank you for using Student Management System."
+                    );
+
                     scanner.close();
                     return;
 
