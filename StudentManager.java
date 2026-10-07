@@ -6,8 +6,14 @@ public class StudentManager {
     private List<Student> students = new ArrayList<>();
 
     // Add Student
-    public void addStudent(Student student) {
+    public boolean addStudent(Student student) {
+
+        if (searchStudent(student.getRollNumber()) != null) {
+            return false;
+        }
+
         students.add(student);
+        return true;
     }
 
     // View All Students
@@ -38,7 +44,9 @@ public class StudentManager {
     }
 
     // Update Student
-    public boolean updateStudent(int rollNumber, String name, String course) {
+    public boolean updateStudent(
+            int rollNumber, String name, String course) {
+
         Student student = searchStudent(rollNumber);
 
         if (student != null) {
@@ -63,8 +71,11 @@ public class StudentManager {
     }
 
     // Add Marks
-    public boolean addMarks(int rollNumber, double javaMarks,
-                            double dbmsMarks, double dsaMarks) {
+    public boolean addMarks(
+            int rollNumber,
+            double javaMarks,
+            double dbmsMarks,
+            double dsaMarks) {
 
         Student student = searchStudent(rollNumber);
 
@@ -96,7 +107,8 @@ public class StudentManager {
         System.out.println("DBMS Marks: " + student.getDbmsMarks());
         System.out.println("DSA Marks: " + student.getDsaMarks());
         System.out.println("Total Marks: " + student.getTotalMarks());
-        System.out.println("Percentage: " + student.getPercentage() + "%");
+        System.out.println(
+                "Percentage: " + student.getPercentage() + "%");
         System.out.println("Grade: " + student.getGrade());
         System.out.println("Result: " + student.getResult());
     }
