@@ -6,11 +6,11 @@ public class FileHandler {
 
     private static final String FILE_NAME = "students.txt";
 
-    // Save students to file
     public static void saveStudents(List<Student> students) {
 
         try (BufferedWriter writer =
-                     new BufferedWriter(new FileWriter(FILE_NAME))) {
+                     new BufferedWriter(
+                             new FileWriter(FILE_NAME))) {
 
             for (Student student : students) {
 
@@ -26,15 +26,16 @@ public class FileHandler {
                 writer.newLine();
             }
 
-            System.out.println("Student data saved successfully.");
+            System.out.println(
+                    "Student data saved successfully.");
 
         } catch (IOException e) {
 
-            System.out.println("Error saving student data.");
+            System.out.println(
+                    "Error saving student data.");
         }
     }
 
-    // Load students from file
     public static List<Student> loadStudents() {
 
         List<Student> students = new ArrayList<>();
@@ -46,17 +47,24 @@ public class FileHandler {
         }
 
         try (BufferedReader reader =
-                     new BufferedReader(new FileReader(FILE_NAME))) {
+                     new BufferedReader(
+                             new FileReader(FILE_NAME))) {
 
             String line;
 
             while ((line = reader.readLine()) != null) {
 
-                String[] data = line.split(",");
+                String[] data = line.split(",", -1);
 
-                if (data.length == 6) {
+                if (data.length != 6) {
+                    continue;
+                }
 
-                    int rollNumber = Integer.parseInt(data[0]);
+                try {
+
+                    int rollNumber =
+                            Integer.parseInt(data[0]);
+
                     String name = data[1];
                     String course = data[2];
 
@@ -70,19 +78,28 @@ public class FileHandler {
                             Double.parseDouble(data[5]);
 
                     Student student =
-                            new Student(rollNumber, name, course);
+                            new Student(
+                                    rollNumber,
+                                    name,
+                                    course);
 
                     student.setJavaMarks(javaMarks);
                     student.setDbmsMarks(dbmsMarks);
                     student.setDsaMarks(dsaMarks);
 
                     students.add(student);
+
+                } catch (NumberFormatException e) {
+
+                    System.out.println(
+                            "Invalid student record skipped.");
                 }
             }
 
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException e) {
 
-            System.out.println("Error loading student data.");
+            System.out.println(
+                    "Error loading student data.");
         }
 
         return students;
