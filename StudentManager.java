@@ -5,7 +5,6 @@ public class StudentManager {
 
     private List<Student> students = new ArrayList<>();
 
-    // Add Student
     public boolean addStudent(Student student) {
 
         if (searchStudent(student.getRollNumber()) != null) {
@@ -16,7 +15,6 @@ public class StudentManager {
         return true;
     }
 
-    // View All Students
     public void viewStudents() {
 
         if (students.isEmpty()) {
@@ -34,7 +32,6 @@ public class StudentManager {
         }
     }
 
-    // Search Student
     public Student searchStudent(int rollNumber) {
 
         for (Student student : students) {
@@ -47,7 +44,6 @@ public class StudentManager {
         return null;
     }
 
-    // Update Student
     public boolean updateStudent(
             int rollNumber,
             String name,
@@ -66,7 +62,6 @@ public class StudentManager {
         return false;
     }
 
-    // Delete Student
     public boolean deleteStudent(int rollNumber) {
 
         Student student = searchStudent(rollNumber);
@@ -80,7 +75,6 @@ public class StudentManager {
         return false;
     }
 
-    // Add Marks
     public boolean addMarks(
             int rollNumber,
             double javaMarks,
@@ -101,7 +95,6 @@ public class StudentManager {
         return false;
     }
 
-    // Display Result
     public void displayResult(int rollNumber) {
 
         Student student = searchStudent(rollNumber);
@@ -119,18 +112,16 @@ public class StudentManager {
         System.out.println("DBMS Marks: " + student.getDbmsMarks());
         System.out.println("DSA Marks: " + student.getDsaMarks());
         System.out.println("Total Marks: " + student.getTotalMarks());
-        System.out.println(
-                "Percentage: " + student.getPercentage() + "%");
+        System.out.println("Percentage: "
+                + student.getPercentage() + "%");
         System.out.println("Grade: " + student.getGrade());
         System.out.println("Result: " + student.getResult());
     }
 
-    // Get all students for File Handling
     public List<Student> getStudents() {
         return students;
     }
 
-    // Load students into manager
     public void loadStudents(List<Student> loadedStudents) {
         students = loadedStudents;
     }
