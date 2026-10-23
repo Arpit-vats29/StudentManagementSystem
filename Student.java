@@ -1,9 +1,7 @@
 public class Student {
-
     private int rollNumber;
     private String name;
     private String course;
-
     private double javaMarks;
     private double dbmsMarks;
     private double dsaMarks;
@@ -86,14 +84,9 @@ public class Student {
     }
 
     public String getResult() {
-
-        if (javaMarks >= 40 &&
-            dbmsMarks >= 40 &&
-            dsaMarks >= 40) {
-
+        if (javaMarks >= 40 && dbmsMarks >= 40 && dsaMarks >= 40) {
             return "PASS";
         }
-
         return "FAIL";
     }
 }
